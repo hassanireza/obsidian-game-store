@@ -1,0 +1,166 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#000000"/>
+<title>{% block title %}{{ SITE_FULL_NAME }}{% endblock %}</title>
+<meta name="description" content="{% block desc %}Play incredible browser games instantly. No downloads, no waiting.{% endblock %}"/>
+<link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{% static 'css/obsidian.css' %}"/>
+{% block head %}{% endblock %}
+</head>
+<body>
+
+{% block full_page %}
+<!-- Cursor -->
+<div id="gc-cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+<!-- Toast root -->
+<div id="toast-root" role="status" aria-live="polite"></div>
+
+<!-- Django messages -->
+{% if messages %}<div class="dj-msg-wrap">{% for m in messages %}<div class="dj-msg {{ m.tags }}">{{ m }}</div>{% endfor %}</div>{% endif %}
+
+<!-- Mobile overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<!-- Mobile topbar -->
+<header class="topbar" role="banner">
+  <button class="topbar-hamburger" id="open-sidebar" aria-label="Open navigation" aria-expanded="false">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
+  </button>
+  <span class="topbar-title">{{ SITE_NAME|upper }}</span>
+  <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+    {% if user.is_authenticated %}
+    <a href="{% url 'library' %}" style="color:var(--t2);display:flex;align-items:center;" title="Library">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    </a>
+    {% else %}
+    <a href="{% url 'login' %}" style="padding:7px 14px;background:var(--blue);color:#fff;border-radius:var(--r-full);font-size:13px;font-weight:600;">Sign In</a>
+    {% endif %}
+  </div>
+</header>
+
+<div class="app">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-brand">
+      <a href="{% url 'home' %}" class="brand-link">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 1.5L21 8l-3 5-6 9.5L6 13 3 8l9-6.5z" fill="url(#brandGem)"/><path d="M12 1.5L6 13l6 9.5V1.5z" fill="#000" fill-opacity=".22"/><path d="M12 1.5L3 8l3 5h12l3-5-9-6.5z" fill="#fff" fill-opacity=".08"/><defs><linearGradient id="brandGem" x1="3" y1="1.5" x2="21" y2="22.5"><stop offset="0%" stop-color="#F4E4BC"/><stop offset="50%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#8A6C1F"/></linearGradient></defs></svg>
+        </div>
+        <div>
+          <div class="brand-wordmark">{{ SITE_NAME|upper }}</div>
+          <div class="brand-sub">{{ SITE_TAGLINE }}</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Discover</div>
+      <a href="{% url 'home' %}" class="sidebar-item {% if page == 'home' %}active{% endif %}">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="{% url 'catalog' %}" class="sidebar-item {% if page == 'store' %}active{% endif %}">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All Games
+      </a>
+      <a href="{% url 'catalog' %}?sort=popular" class="sidebar-item">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Trending
+      </a>
+      <a href="{% url 'catalog' %}?sort=newest" class="sidebar-item">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        New Releases
+      </a>
+    </div>
+
+    {% if nav_genres %}
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Genres</div>
+      {% for g in nav_genres %}
+      <a href="{% url 'catalog' %}?genre={{ g.slug }}" class="genre-item {% if request.GET.genre == g.slug %}active{% endif %}">
+        <span class="genre-icon">{{ g.icon }}</span>{{ g.name }}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">My Space</div>
+      <a href="{% url 'library' %}" class="sidebar-item {% if page == 'library' %}active{% endif %}">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Library{% if nav_lib %} <span class="sidebar-badge">{{ nav_lib }}</span>{% endif %}
+      </a>
+      <a href="{% url 'wishlist' %}" class="sidebar-item {% if page == 'wishlist' %}active{% endif %}">
+        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        Wishlist{% if nav_wl %} <span class="sidebar-badge" style="background:var(--red);">{{ nav_wl }}</span>{% endif %}
+      </a>
+    </div>
+
+    <div class="sidebar-user">
+      {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}" class="user-row" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <div class="avatar">{{ user.username|slice:":2"|upper }}</div>
+        <div class="user-meta">
+          <div class="user-name">{{ user.username }}</div>
+          <div class="user-status">Online</div>
+        </div>
+      </a>
+      <a href="{% url 'logout' %}" style="display:block;text-align:center;padding:8px;margin-top:8px;border-radius:var(--r-md);background:var(--fill-1);font-size:13px;color:var(--t2);font-weight:500;transition:background .15s;" onmouseover="this.style.background='var(--fill-2)'" onmouseout="this.style.background='var(--fill-1)'">Sign Out</a>
+      {% else %}
+      <div class="sidebar-cta">
+        <a href="{% url 'signup' %}" style="display:block;text-align:center;padding:10px;border-radius:var(--r-full);background:var(--blue);color:#fff;font-size:13px;font-weight:700;">Create Account</a>
+        <a href="{% url 'login' %}" style="display:block;text-align:center;padding:10px;border-radius:var(--r-full);background:var(--fill-2);color:var(--t1);font-size:13px;font-weight:600;border:1px solid var(--sep);">Sign In</a>
+      </div>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main" id="main">
+    {% block main %}{% endblock %}
+  </main>
+</div>
+
+{% block footer %}
+<footer class="site-footer" style="margin-left:var(--sidebar-w);">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <a href="{% url 'home' %}" class="footer-link">Home</a>
+      <a href="{% url 'catalog' %}" class="footer-link">All Games</a>
+      <a href="{% url 'catalog' %}?sort=popular" class="footer-link">Trending</a>
+      <a href="{% url 'catalog' %}?sort=newest" class="footer-link">New Releases</a>
+    </div>
+    <div>
+      <div class="footer-col-title">My Account</div>
+      <a href="{% url 'library' %}" class="footer-link">Library</a>
+      <a href="{% url 'wishlist' %}" class="footer-link">Wishlist</a>
+      <a href="{% url 'profile' %}" class="footer-link">Profile</a>
+    </div>
+    <div>
+      <div class="footer-col-title">{{ SITE_NAME|upper }}</div>
+      <span class="footer-link">About</span>
+      <span class="footer-link">Developers</span>
+      <span class="footer-link">Support</span>
+      <span class="footer-link">Privacy</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 {{ SITE_FULL_NAME }}</span>
+    <span style="color:var(--blue);font-size:11px;letter-spacing:.04em;">v1.0.0</span>
+  </div>
+</footer>
+{% endblock %}
+{% endblock full_page %}
+
+<script src="{% static 'js/main.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

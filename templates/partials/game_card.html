@@ -1,0 +1,47 @@
+{% load static %}
+<div class="game-card reveal"
+     data-name="{{ game.name }}"
+     data-genre="{{ game.genre.name|default:'' }}"
+     onclick="window.location.href='{% url 'game_detail' game.slug %}'">
+
+  {% if show_badge %}{% if game.is_new %}<span class="card-badge badge-new">New</span>{% elif game.is_editors_choice %}<span class="card-badge badge-choice">Choice</span>{% elif game.is_featured %}<span class="card-badge badge-featured">Featured</span>{% endif %}{% endif %}
+
+  <div class="game-card-art">
+    {% if game.thumbnail %}
+      <img src="{{ game.thumbnail_url }}" alt="{{ game.name }}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="game-card-art-gradient" style="display:none;background:linear-gradient(135deg,{{ game.color_from }},{{ game.color_to }})"><div class="art-icon">{{ game.genre.icon }}</div></div>
+    {% else %}
+      {% if game.slug == 'neon-blocks' %}<img src="{% static 'images/game-icons/neon-blocks.svg' %}" alt="{{ game.name }}" loading="lazy"/>
+      {% elif game.slug == 'neural-grid' %}<img src="{% static 'images/game-icons/neural-grid.svg' %}" alt="{{ game.name }}" loading="lazy"/>
+      {% elif game.slug == 'tic-tac-toe' %}<img src="{% static 'images/game-icons/tic-tac-toe.svg' %}" alt="{{ game.name }}" loading="lazy"/>
+      {% elif game.slug == 'skyfold-aviary' %}<img src="{% static 'images/game-icons/skyfold-aviary.svg' %}" alt="{{ game.name }}" loading="lazy"/>
+      {% elif game.slug == 'voidrunner' %}<img src="{% static 'images/game-icons/voidrunner.svg' %}" alt="{{ game.name }}" loading="lazy"/>
+      {% else %}<div class="game-card-art-gradient" style="background:linear-gradient(135deg,{{ game.color_from }},{{ game.color_to }})"><div class="art-icon">{{ game.genre.icon }}</div></div>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <div class="game-card-body">
+    <div class="game-card-genre">{{ game.genre.name }}</div>
+    <div class="game-card-name">{{ game.name }}</div>
+    <div class="game-card-tagline">{{ game.tagline }}</div>
+    <div class="game-card-footer">
+      <div class="mini-rating">
+        <div class="mini-stars">{% for i in "12345" %}{% if forloop.counter <= game.rating_int %}<span class="mini-star">★</span>{% else %}<span class="mini-star empty">★</span>{% endif %}{% endfor %}</div>
+        <span>{{ game.rating }}</span>
+      </div>
+      <div class="icon-actions" onclick="event.stopPropagation()">
+        <button class="icon-btn heart {% if game.pk in wishlist_ids %}active{% endif %}" data-wl="{{ game.slug }}" title="Wishlist" aria-label="Wishlist {{ game.name }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="icon-btn plus {% if game.pk in library_ids %}active{% endif %}" data-lib="{{ game.slug }}" title="Add to Library" aria-label="Add {{ game.name }} to Library">
+          {% if game.pk in library_ids %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>{% endif %}
+        </button>
+        <a href="{{ game.play_url }}" class="play-btn-sm" onclick="event.stopPropagation()" aria-label="Play {{ game.name }}">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Sign In — {{ SITE_FULL_NAME }}{% endblock %}
+
+{% block full_page %}
+<link rel="stylesheet" href="{% static 'css/obsidian.css' %}"/>
+<div id="toast-root"></div>
+{% if messages %}<div class="dj-msg-wrap">{% for m in messages %}<div class="dj-msg {{ m.tags }}">{{ m }}</div>{% endfor %}</div>{% endif %}
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#0A84FF,#5AC8FA);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
+      </div>
+    </div>
+    <div class="auth-title">Welcome back</div>
+    <div class="auth-sub">Sign in to your {{ SITE_FULL_NAME }} account</div>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}"/>
+
+      <div class="form-group">
+        <label class="form-label" for="id_username">Username</label>
+        <input class="form-input {% if form.username.errors %}is-error{% endif %}"
+               type="text" name="username" id="id_username"
+               value="{{ form.username.value|default:'' }}" autocomplete="username" autofocus/>
+        {% for e in form.username.errors %}<div class="form-err">{{ e }}</div>{% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="id_password">Password</label>
+        <input class="form-input {% if form.non_field_errors %}is-error{% endif %}"
+               type="password" name="password" id="id_password" autocomplete="current-password"/>
+      </div>
+
+      {% if form.non_field_errors %}<div style="padding:10px 14px;background:var(--red-dim);border:1px solid rgba(255,69,58,.35);border-radius:var(--r-md);font-size:13px;color:var(--red);margin-bottom:14px;">{% for e in form.non_field_errors %}{{ e }}{% endfor %}</div>{% endif %}
+
+      <button type="submit" style="width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:var(--r-full);font-size:15px;font-weight:700;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Sign In</button>
+    </form>
+
+    <div style="text-align:center;margin-top:20px;font-size:14px;color:var(--t2);">
+      New to {{ SITE_NAME }}? <a href="{% url 'signup' %}" style="color:var(--blue);font-weight:600;">Create an account</a>
+    </div>
+    <div style="text-align:center;margin-top:10px;">
+      <a href="{% url 'home' %}" style="font-size:13px;color:var(--t3);">Continue without signing in →</a>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

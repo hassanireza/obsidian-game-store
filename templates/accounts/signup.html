@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Create Account — {{ SITE_FULL_NAME }}{% endblock %}
+
+{% block full_page %}
+<link rel="stylesheet" href="{% static 'css/obsidian.css' %}"/>
+<div id="toast-root"></div>
+{% if messages %}<div class="dj-msg-wrap">{% for m in messages %}<div class="dj-msg {{ m.tags }}">{{ m }}</div>{% endfor %}</div>{% endif %}
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#0A84FF,#5AC8FA);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z"/></svg>
+      </div>
+    </div>
+    <div class="auth-title">Join {{ SITE_NAME }}</div>
+    <div class="auth-sub">Create your free Game Center account</div>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-group">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input class="form-input {% if field.errors %}is-error{% endif %}"
+               type="{{ field.field.widget.input_type }}"
+               name="{{ field.html_name }}"
+               id="{{ field.id_for_label }}"
+               value="{{ field.value|default:'' }}"
+               {% if field.field.required %}required{% endif %}
+               {% if forloop.first %}autofocus{% endif %}
+               autocomplete="{% if 'password' in field.html_name %}new-password{% elif field.html_name == 'email' %}email{% else %}{{ field.html_name }}{% endif %}"/>
+        {% for e in field.errors %}<div class="form-err">{{ e }}</div>{% endfor %}
+        {% if field.help_text %}<div style="font-size:11px;color:var(--t3);margin-top:3px;">{{ field.help_text }}</div>{% endif %}
+      </div>
+      {% endfor %}
+
+      <button type="submit" style="width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:var(--r-full);font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Create Account</button>
+    </form>
+
+    <div style="text-align:center;margin-top:20px;font-size:14px;color:var(--t2);">
+      Already have an account? <a href="{% url 'login' %}" style="color:var(--blue);font-weight:600;">Sign in</a>
+    </div>
+    <div style="text-align:center;margin-top:10px;">
+      <a href="{% url 'home' %}" style="font-size:13px;color:var(--t3);">Continue without an account →</a>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

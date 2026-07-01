@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}All Games — {{ SITE_FULL_NAME }}{% endblock %}
+
+{% block main %}
+<div style="padding:36px 40px 0;">
+  <h1 style="font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;">Game Store</h1>
+  <p style="color:var(--t2);font-size:14px;margin-bottom:28px;"><span id="game-count">{{ total }}</span> game{{ total|pluralize }} available</p>
+
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+    <div class="search-wrap" style="max-width:480px;">
+      <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
+      <input type="text" id="store-search" placeholder="Search games..." value="{{ q }}" autocomplete="off"/>
+      <span class="search-clear" title="Clear">✕</span>
+    </div>
+
+    <div class="filter-row">
+      <span style="font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-right:2px;">Sort</span>
+      <a href="?sort=popular{% if q %}&q={{ q }}{% endif %}{% if genre_slug %}&genre={{ genre_slug }}{% endif %}" class="fpill {% if sort == 'popular' or not sort %}active{% endif %}">Most Played</a>
+      <a href="?sort=rating{% if q %}&q={{ q }}{% endif %}{% if genre_slug %}&genre={{ genre_slug }}{% endif %}" class="fpill {% if sort == 'rating' %}active{% endif %}">Top Rated</a>
+      <a href="?sort=newest{% if q %}&q={{ q }}{% endif %}{% if genre_slug %}&genre={{ genre_slug }}{% endif %}" class="fpill {% if sort == 'newest' %}active{% endif %}">Newest</a>
+      <a href="?sort=az{% if q %}&q={{ q }}{% endif %}{% if genre_slug %}&genre={{ genre_slug }}{% endif %}" class="fpill {% if sort == 'az' %}active{% endif %}">A to Z</a>
+      <span style="width:1px;height:20px;background:var(--sep);margin:0 6px;align-self:center;"></span>
+      <span style="font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-right:2px;">Genre</span>
+      <a href="?sort={{ sort }}" class="fpill {% if not genre_slug %}active{% endif %}">All</a>
+      {% for g in genres %}
+      <a href="?genre={{ g.slug }}&sort={{ sort }}{% if q %}&q={{ q }}{% endif %}" class="fpill {% if genre_slug == g.slug %}active{% endif %}">{{ g.icon }} {{ g.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if q %}<p style="font-size:14px;color:var(--t2);margin-bottom:20px;">Results for "<strong style="color:var(--t1);">{{ q }}</strong>"</p>{% endif %}
+</div>
+
+<div style="padding:0 40px 60px;">
+  {% if games %}
+  <div class="games-grid" id="games-grid">
+    {% for game in games %}
+    <div class="card-wrap">{% with show_badge=True %}{% include "partials/game_card.html" %}{% endwith %}</div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">🎮</div>
+    <div class="empty-title">No games found</div>
+    <div class="empty-body">Try adjusting your search or filters.</div>
+    <a href="{% url 'catalog' %}" class="play-btn" style="display:inline-flex;">Clear Filters</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

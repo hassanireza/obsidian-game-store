@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ game.name }} — {{ SITE_FULL_NAME }}{% endblock %}
+{% block desc %}{{ game.tagline }} — Play {{ game.name }} free on {{ SITE_FULL_NAME }}.{% endblock %}
+
+{% block main %}
+
+<!-- Hero -->
+<div class="detail-hero">
+  {% if game.banner %}
+    <img class="detail-hero-img" src="{{ game.banner_url }}" alt="{{ game.name }}"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <div class="detail-hero-gradient" style="display:none;background:linear-gradient(135deg,{{ game.color_from }},{{ game.color_to }})"></div>
+  {% elif game.thumbnail %}
+    <img class="detail-hero-img" src="{{ game.thumbnail_url }}" alt="{{ game.name }}"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <div class="detail-hero-gradient" style="display:none;background:linear-gradient(135deg,{{ game.color_from }},{{ game.color_to }})"></div>
+  {% else %}
+    {% if game.slug == 'neon-blocks' %}<img class="detail-hero-img" src="{% static 'images/game-icons/neon-blocks.svg' %}" alt="{{ game.name }}" style="object-fit:cover;opacity:.6;"/>
+    {% elif game.slug == 'neural-grid' %}<img class="detail-hero-img" src="{% static 'images/game-icons/neural-grid.svg' %}" alt="{{ game.name }}" style="object-fit:cover;opacity:.6;"/>
+    {% elif game.slug == 'tic-tac-toe' %}<img class="detail-hero-img" src="{% static 'images/game-icons/tic-tac-toe.svg' %}" alt="{{ game.name }}" style="object-fit:cover;opacity:.6;"/>
+    {% elif game.slug == 'skyfold-aviary' %}<img class="detail-hero-img" src="{% static 'images/game-icons/skyfold-aviary.svg' %}" alt="{{ game.name }}" style="object-fit:cover;opacity:.6;"/>
+    {% elif game.slug == 'voidrunner' %}<img class="detail-hero-img" src="{% static 'images/game-icons/voidrunner.svg' %}" alt="{{ game.name }}" style="object-fit:cover;opacity:.6;"/>
+    {% else %}<div class="detail-hero-gradient" style="background:linear-gradient(135deg,{{ game.color_from }},{{ game.color_to }})"></div>
+    {% endif %}
+  {% endif %}
+  <div class="detail-hero-overlay"></div>
+  <div class="detail-hero-content">
+    <div class="detail-genre-pill">{{ game.genre.icon }} {{ game.genre.name }}</div>
+    <div class="detail-title">{{ game.name }}</div>
+    <div class="detail-dev">by {{ game.developer }}</div>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="detail-body">
+  <!-- Left: Info -->
+  <div>
+    <!-- Description -->
+    <div class="reveal" style="margin-bottom:32px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:10px;">About</div>
+      <div class="detail-desc">{{ game.description }}</div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="reveal" style="margin-bottom:28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:4px;">Reviews</div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-.02em;">{{ game.rating }} <span style="font-size:13px;font-weight:400;color:var(--t3);">/ 5 &nbsp;({{ game.review_count }} reviews)</span></div>
+        </div>
+        <div class="stars-row">
+          {% for i in "12345" %}{% if forloop.counter <= game.rating_int %}<span class="star-item">★</span>{% else %}<span class="star-item empty">★</span>{% endif %}{% endfor %}
+        </div>
+      </div>
+
+      {% for review in reviews %}
+      <div class="review-card">
+        <div class="review-head">
+          <div class="review-avatar">{{ review.user.username|slice:":2"|upper }}</div>
+          <div class="review-user">{{ review.user.username }}</div>
+          <div class="review-date">{{ review.created_at|date:"M d, Y" }}</div>
+        </div>
+        <div class="stars-row" style="margin-bottom:6px;pointer-events:none;">
+          {% for i in "12345" %}{% if forloop.counter <= review.rating %}<span class="star-item" style="font-size:12px;">★</span>{% else %}<span class="star-item empty" style="font-size:12px;">★</span>{% endif %}{% endfor %}
+        </div>
+        <div class="review-body">{{ review.body }}</div>
+      </div>
+      {% empty %}
+      <p style="color:var(--t3);font-size:14px;">No reviews yet. Be the first!</p>
+      {% endfor %}
+
+      {% if user.is_authenticated %}
+      <div id="review-form" style="margin-top:20px;background:var(--bg-1);border-radius:var(--r-xl);padding:20px;">
+        <div style="font-size:14px;font-weight:600;margin-bottom:12px;">{% if user_review %}Edit your review{% else %}Leave a Review{% endif %}</div>
+        <div class="stars-row" style="margin-bottom:12px;">
+          {% for i in "12345" %}<span class="star-item {% if not user_review or forloop.counter > user_review.rating %}empty{% endif %}" data-star="{{ forloop.counter }}">{% if user_review and forloop.counter <= user_review.rating %}★{% else %}☆{% endif %}</span>{% endfor %}
+        </div>
+        <textarea name="review-body" rows="4" placeholder="Share your experience..." style="width:100%;padding:10px 12px;background:var(--bg-2);border:1px solid var(--sep);border-radius:var(--r-md);color:var(--t1);font-size:14px;resize:vertical;outline:none;line-height:1.5;">{% if user_review %}{{ user_review.body }}{% endif %}</textarea>
+        <button data-review-submit="{{ game.slug }}" data-star-init="{{ user_review.rating|default:0 }}" style="margin-top:10px;padding:10px 22px;background:var(--blue);color:#fff;border-radius:var(--r-full);font-size:13px;font-weight:700;border:none;cursor:pointer;">Publish Review</button>
+      </div>
+      {% else %}
+      <div style="margin-top:20px;padding:16px;background:var(--bg-1);border-radius:var(--r-xl);text-align:center;">
+        <span style="color:var(--t2);font-size:14px;"><a href="{% url 'login' %}" style="color:var(--blue);font-weight:600;">Sign in</a> to leave a review.</span>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Related -->
+    {% if related %}
+    <div class="reveal">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:14px;">More in {{ game.genre.name }}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        {% for rg in related %}
+        {% with game=rg show_badge=False %}{% include "partials/game_card.html" %}{% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Right: Panel -->
+  <div>
+    <div class="detail-panel reveal">
+      <!-- Rating -->
+      <div class="detail-rating-row">
+        <div class="detail-rating-score">{{ game.rating }}</div>
+        <div>
+          <div class="stars-row" style="pointer-events:none;">
+            {% for i in "12345" %}{% if forloop.counter <= game.rating_int %}<span class="star-item" style="font-size:16px;">★</span>{% else %}<span class="star-item empty" style="font-size:16px;">★</span>{% endif %}{% endfor %}
+          </div>
+          <div style="font-size:11px;color:var(--t3);margin-top:2px;">{{ game.review_count }} ratings</div>
+        </div>
+      </div>
+
+      <!-- Primary play button -->
+      <a href="{{ game.play_url }}" class="play-btn" style="width:100%;justify-content:center;margin-bottom:10px;">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Play Now — Free
+      </a>
+
+      <!-- Icon actions row -->
+      <div class="detail-panel-icon-row" style="margin-bottom:20px;">
+        <button class="icon-btn heart {% if in_wl %}active{% endif %}" data-wl="{{ game.slug }}" style="width:48px;height:48px;" title="{% if in_wl %}Remove from Wishlist{% else %}Add to Wishlist{% endif %}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="icon-btn plus {% if in_lib %}active{% endif %}" data-lib="{{ game.slug }}" style="width:48px;height:48px;" title="{% if in_lib %}In Library{% else %}Add to Library{% endif %}">
+          {% if in_lib %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px;"><polyline points="20 6 9 17 4 12"/></svg>{% else %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>{% endif %}
+        </button>
+        <button class="icon-btn" title="Share" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.location.href);window.dispatchEvent(new CustomEvent('obsidian:toast',{detail:{msg:'Link copied!',type:'success'}}))" style="width:48px;height:48px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Info rows -->
+      <div class="detail-info-row"><span class="detail-info-label">Genre</span><span class="detail-info-value">{{ game.genre.name }}</span></div>
+      <div class="detail-info-row"><span class="detail-info-label">Developer</span><span class="detail-info-value">{{ game.developer }}</span></div>
+      <div class="detail-info-row"><span class="detail-info-label">Released</span><span class="detail-info-value">{% if game.release_date %}{{ game.release_date|date:"M Y" }}{% else %}2024{% endif %}</span></div>
+      <div class="detail-info-row"><span class="detail-info-label">Plays</span><span class="detail-info-value" data-count="{{ game.plays }}">{{ game.plays }}</span></div>
+      <div class="detail-info-row"><span class="detail-info-label">Price</span><span class="detail-info-value" style="color:var(--green);font-weight:700;">Free</span></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.addEventListener('obsidian:toast', e => Toast.show(e.detail.msg, {type: e.detail.type}));
+// Set initial star state for review if editing
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.querySelector('[data-review-submit]');
+  if (btn) {
+    const init = parseInt(btn.dataset.starInit || '0', 10);
+    if (init > 0) {
+      const stars = document.querySelectorAll('[data-star]');
+      stars.forEach((s, i) => { s.textContent = i < init ? '★' : '☆'; s.classList.toggle('empty', i >= init); });
+    }
+  }
+});
+</script>
+{% endblock %}

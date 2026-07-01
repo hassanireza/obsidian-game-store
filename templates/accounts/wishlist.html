@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Wishlist — {{ SITE_FULL_NAME }}{% endblock %}
+
+{% block main %}
+<div style="padding:36px 40px 60px;">
+  <div style="margin-bottom:28px;">
+    <h1 style="font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;">Wishlist</h1>
+    <p style="color:var(--t2);font-size:14px;">{{ items|length }} game{{ items|length|pluralize }}</p>
+  </div>
+
+  {% if items %}
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    {% for item in items %}
+    <div class="list-item reveal" onclick="window.location.href='{% url 'game_detail' item.game.slug %}'">
+      {% if item.game.thumbnail %}
+        <img class="list-thumb" src="{{ item.game.thumbnail_url }}" alt="{{ item.game.name }}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="list-thumb-gradient" style="display:none;background:linear-gradient(135deg,{{ item.game.color_from }},{{ item.game.color_to }})">{{ item.game.genre.icon }}</div>
+      {% else %}
+        <div class="list-thumb-gradient" style="background:linear-gradient(135deg,{{ item.game.color_from }},{{ item.game.color_to }})">{{ item.game.genre.icon }}</div>
+      {% endif %}
+      <div class="list-body">
+        <div class="list-name">{{ item.game.name }}</div>
+        <div class="list-meta">{{ item.game.genre.name }} &middot; Added {{ item.added_at|date:"M d, Y" }}</div>
+      </div>
+      <div class="list-actions" onclick="event.stopPropagation()">
+        <button class="icon-btn heart active" data-wl="{{ item.game.slug }}" title="Remove from Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <a href="{{ item.game.play_url }}" class="play-btn-sm" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">♡</div>
+    <div class="empty-title">Your wishlist is empty</div>
+    <div class="empty-body">Tap the heart icon on any game to save it here for later.</div>
+    <a href="{% url 'catalog' %}" class="play-btn" style="display:inline-flex;">Browse Games</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,161 @@
+[
+  {"model": "store.genre", "pk": 1, "fields": {"name": "Mystical", "slug": "mystical", "icon": "🔮", "order": 1}},
+  {"model": "store.genre", "pk": 2, "fields": {"name": "Puzzle", "slug": "puzzle", "icon": "🧩", "order": 2}},
+  {"model": "store.genre", "pk": 3, "fields": {"name": "Strategy", "slug": "strategy", "icon": "♟️", "order": 3}},
+  {"model": "store.genre", "pk": 4, "fields": {"name": "Classic", "slug": "classic", "icon": "🎯", "order": 4}},
+  {"model": "store.genre", "pk": 5, "fields": {"name": "Chess", "slug": "chess", "icon": "♛", "order": 5}},
+  {"model": "store.genre", "pk": 6, "fields": {"name": "Racing", "slug": "racing", "icon": "🚀", "order": 6}},
+  {"model": "store.genre", "pk": 7, "fields": {"name": "Arcade", "slug": "arcade", "icon": "🕹️", "order": 7}},
+  {"model": "store.genre", "pk": 8, "fields": {"name": "Action", "slug": "action", "icon": "⚡", "order": 8}},
+  {"model": "store.genre", "pk": 9, "fields": {"name": "Card", "slug": "card", "icon": "🃏", "order": 9}},
+
+  {"model": "store.game", "pk": 1, "fields": {
+    "slug": "arcana-night-city-tarot",
+    "name": "ARCANA: Night City Tarot",
+    "tagline": "Read the cards of Night City",
+    "description": "A cyberpunk tarot experience featuring all 22 Major Arcana cards reimagined for Night City. Choose your fate through single-card draws, full card browsing, or a three-card Past-Present-Future spread. Each reading reveals oracle passages in a neon-soaked, rain-drenched atmosphere inspired by the world of Cyberpunk 2077. Discover what the cards hold for you across three distinct game modes.",
+    "genre": 1, "developer": "Night City Dev",
+    "is_featured": true, "is_trending": true, "is_editors_choice": true, "is_new": false,
+    "plays": 8241, "rating": 4.8, "review_count": 312,
+    "color_from": "#8B00FF", "color_to": "#FF006E",
+    "thumbnail": "nightCityDivination/assets/banner.webp",
+    "banner": "nightCityDivination/assets/featuredbanner.webp",
+    "game_folder": "nightCityDivination", "game_entry": "index.html",
+    "release_date": "2024-06-06", "created_at": "2024-06-06T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 2, "fields": {
+    "slug": "neon-blocks",
+    "name": "Neon Blocks",
+    "tagline": "Stack. Clear. Survive.",
+    "description": "A high-energy neon-soaked take on the classic block-stacking game, built for speed and style. Stack falling pieces to clear lines and climb the leaderboard before the grid fills up. The neon aesthetic cranks up intensity as your score grows, making every cleared row feel electric. How long can you survive the cascade?",
+    "genre": 2, "developer": "Pixel Realms Studio",
+    "is_featured": false, "is_trending": true, "is_editors_choice": false, "is_new": false,
+    "plays": 15820, "rating": 4.5, "review_count": 498,
+    "color_from": "#00F5A0", "color_to": "#00D9F5",
+    "thumbnail": "pixelRealms/games/neonBlocks/assets/cover.webp",
+    "banner": "pixelRealms/games/neonBlocks/assets/cover.webp",
+    "game_folder": "pixelRealms/games/neonBlocks", "game_entry": "index.html",
+    "release_date": "2024-05-27", "created_at": "2024-05-27T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 3, "fields": {
+    "slug": "neural-grid",
+    "name": "Neural Grid",
+    "tagline": "Connect. Cascade. Score.",
+    "description": "A tactical grid-based strategy puzzle that challenges your pattern recognition and forward thinking. Place pieces on the neural network grid to connect pathways and score points before the board locks up. Each move triggers cascading connections that reward clever sequencing over brute force. Master the grid before the neural network overwrites your progress.",
+    "genre": 3, "developer": "Pixel Realms Studio",
+    "is_featured": false, "is_trending": false, "is_editors_choice": false, "is_new": false,
+    "plays": 9134, "rating": 4.3, "review_count": 276,
+    "color_from": "#7F00FF", "color_to": "#E100FF",
+    "thumbnail": "pixelRealms/games/neuralGrid/assets/cover.webp",
+    "banner": "pixelRealms/games/neuralGrid/assets/cover.webp",
+    "game_folder": "pixelRealms/games/neuralGrid", "game_entry": "index.html",
+    "release_date": "2024-05-28", "created_at": "2024-05-28T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 4, "fields": {
+    "slug": "tic-tac-toe",
+    "name": "Tic-Tac-Toe",
+    "tagline": "Deceptively simple. Endlessly strategic.",
+    "description": "The timeless two-player classic reimagined with a sleek modern interface and a smart AI opponent. Choose to play solo against an adaptive AI or challenge a friend in local two-player mode. The clean board design keeps focus on the strategy, while subtle animations reward every winning line. Deceptively simple at first glance, endlessly strategic in practice.",
+    "genre": 4, "developer": "Pixel Realms Studio",
+    "is_featured": false, "is_trending": false, "is_editors_choice": false, "is_new": false,
+    "plays": 22640, "rating": 4.2, "review_count": 831,
+    "color_from": "#f7971e", "color_to": "#ffd200",
+    "thumbnail": "pixelRealms/games/ticTacToe/assets/cover.webp",
+    "banner": "pixelRealms/games/ticTacToe/assets/cover.webp",
+    "game_folder": "pixelRealms/games/ticTacToe", "game_entry": "index.html",
+    "release_date": "2024-06-03", "created_at": "2024-06-03T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 5, "fields": {
+    "slug": "checkmate",
+    "name": "CheckMate",
+    "tagline": "History's greatest moves. Solved by you.",
+    "description": "A curated chess puzzle experience built around iconic positions from the greatest games in history. Discover the decisive tactical combinations played by legends like Morphy, Fischer, Tal, and Kasparov. A context-aware hint system and progressive difficulty keep the challenge satisfying from beginner to grandmaster. Prove you can find the move that changed everything.",
+    "genre": 5, "developer": "CheckMate Labs",
+    "is_featured": true, "is_trending": false, "is_editors_choice": true, "is_new": false,
+    "plays": 11203, "rating": 4.9, "review_count": 607,
+    "color_from": "#232526", "color_to": "#414345",
+    "thumbnail": "checkMate/assets/cover.webp",
+    "banner": "checkMate/assets/cover.webp",
+    "game_folder": "checkMate", "game_entry": "index.html",
+    "release_date": "2024-06-15", "created_at": "2024-06-15T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 6, "fields": {
+    "slug": "cosmodrome",
+    "name": "CosmoDrome",
+    "tagline": "An endless drift through the dark.",
+    "description": "A nostalgic endless space racer inspired by Enduro, set deep in the drift of an alien cosmos. Steer your starfighter through asteroid fields, blast raider ships, and face sector bosses with multiple weapon systems. A combo multiplier rewards aggressive play while persistent high scores track your best runs across sessions. How deep into the drift can you survive?",
+    "genre": 6, "developer": "CosmoDrome Studios",
+    "is_featured": true, "is_trending": true, "is_editors_choice": false, "is_new": true,
+    "plays": 17480, "rating": 4.6, "review_count": 524,
+    "color_from": "#0f0c29", "color_to": "#302b63",
+    "thumbnail": "cosmoDrome/assets/cover.webp",
+    "banner": "cosmoDrome/assets/banner.webp",
+    "game_folder": "cosmoDrome", "game_entry": "index.html",
+    "release_date": "2024-06-23", "created_at": "2024-06-23T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 7, "fields": {
+    "slug": "skyfold-aviary",
+    "name": "Skyfold Aviary",
+    "tagline": "Rise through the floating layers.",
+    "description": "A serene aerial adventure where you pilot a laser-equipped glider through layered floating terraces in the sky. Manage your beam energy carefully as you navigate procedurally generated obstacle patterns across endless vertical layers. The warm sunrise palette and drifting atmospheric architecture create a meditative flow interrupted only by the next challenge. Touch and keyboard controls make it accessible on any device.",
+    "genre": 7, "developer": "Driftline Games",
+    "is_featured": false, "is_trending": true, "is_editors_choice": false, "is_new": true,
+    "plays": 13560, "rating": 4.4, "review_count": 389,
+    "color_from": "#f7971e", "color_to": "#ff6f00",
+    "thumbnail": "driftlineArcade/skyfold/assets/cover.webp",
+    "banner": "driftlineArcade/skyfold/assets/cover.webp",
+    "game_folder": "driftlineArcade/skyfold", "game_entry": "index.html",
+    "release_date": "2024-06-13", "created_at": "2024-06-13T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 8, "fields": {
+    "slug": "voidrunner",
+    "name": "VoidRunner",
+    "tagline": "Sprint. Shoot. Survive.",
+    "description": "A high-speed combat runner set across the red sands of the Martian frontier with VEGA at the controls. Jump, slide, and fire your infinite-energy laser through increasingly brutal obstacle sequences as difficulty scales with every passing second. Local leaderboards track your personal bests, and the pixel art aesthetic punches with vibrant neon contrast. Play for one minute, stay for the high score.",
+    "genre": 8, "developer": "Driftline Games",
+    "is_featured": false, "is_trending": true, "is_editors_choice": false, "is_new": true,
+    "plays": 19870, "rating": 4.5, "review_count": 712,
+    "color_from": "#e52d27", "color_to": "#b31217",
+    "thumbnail": "driftlineArcade/voidRunner/assets/cover.webp",
+    "banner": "driftlineArcade/voidRunner/assets/cover.webp",
+    "game_folder": "driftlineArcade/voidRunner", "game_entry": "index.html",
+    "release_date": "2024-06-12", "created_at": "2024-06-12T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 9, "fields": {
+    "slug": "monarch-room",
+    "name": "Monarch Room",
+    "tagline": "Private Texas Hold'em.",
+    "description": "A private Texas Hold'em experience with the elegance of a high-stakes poker club and the depth of a full tournament. Face adaptive AI opponents and track your stats across a detailed ledger with VPIP, showdown rates, and complete hand history. Tournament mode raises the blinds over time, forcing decisive play as stacks dwindle and pressure mounts. The most refined browser poker experience available.",
+    "genre": 9, "developer": "Monarch Studios",
+    "is_featured": false, "is_trending": false, "is_editors_choice": true, "is_new": false,
+    "plays": 7820, "rating": 4.9, "review_count": 290,
+    "color_from": "#1a1a2e", "color_to": "#16213e",
+    "thumbnail": "MonarchRoom/assets/cover.webp",
+    "banner": "MonarchRoom/assets/cover.webp",
+    "game_folder": "MonarchRoom", "game_entry": "index.html",
+    "release_date": "2024-06-15", "created_at": "2024-06-15T00:00:00Z"
+  }},
+
+  {"model": "store.game", "pk": 10, "fields": {
+    "slug": "aurum-maze",
+    "name": "Aurum Maze",
+    "tagline": "Ten levels. One golden line.",
+    "description": "A minimal arcade chase reimagined for 2026: black space, architectural white linework, and pure gold as the only accent. Guide your runner through ten handcrafted mazes, clearing every spark while four rivals hunt the same paths. A brief power state turns the tables, sending them scattering back to the center. Clean canvas rendering and responsive controls make every turn feel immediate on desktop or mobile.",
+    "genre": 7, "developer": "Obsidian Originals",
+    "is_featured": true, "is_trending": false, "is_editors_choice": true, "is_new": true,
+    "plays": 3120, "rating": 4.8, "review_count": 96,
+    "color_from": "#0a0a0a", "color_to": "#d4af37",
+    "thumbnail": "AurumMaze/assets/cover.webp",
+    "banner": "AurumMaze/assets/cover.webp",
+    "game_folder": "AurumMaze", "game_entry": "index.html",
+    "release_date": "2026-07-01", "created_at": "2026-07-01T00:00:00Z"
+  }}
+]
