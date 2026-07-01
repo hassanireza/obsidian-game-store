@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCANA | Night City Divination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="scan-lines"></div>
+<div class="noise-overlay"></div>
+<div class="vignette"></div>
+
+<canvas id="particle-canvas"></canvas>
+
+<div class="city-bg">
+  <div class="city-layer city-far"></div>
+  <div class="city-layer city-mid"></div>
+  <div class="city-layer city-near"></div>
+  <div class="rain-container" id="rain"></div>
+</div>
+
+<nav class="nav-bar">
+  <div class="nav-logo">
+    <span class="nav-logo-symbol">⬡</span>
+    <span class="nav-logo-text">ARCANA<span class="nav-logo-sub">| v2.0.77</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link" data-text="DIVINATION">DIVINATION</a>
+    <a href="#" class="nav-link" data-text="LORE">LORE</a>
+    <a href="#" class="nav-link" data-text="ORACLE">ORACLE</a>
+  </div>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    <span class="status-text">NEURAL LINK ACTIVE</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-ambient">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">NIGHT CITY | MAJOR ARCANA</span>
+      <span class="eyebrow-line"></span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-jp">運命を</span>
+      <span class="title-main">READ YOUR<br><em>FATE</em></span>
+      <span class="title-jp title-jp-right">解読せよ</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      The cards don't lie, choom. Twenty-two archetypes encoded in the neural net:
+      each one a mirror reflecting the chrome and flesh of who you truly are.
+    </p>
+
+    <div class="hero-cta-group">
+      <button class="btn-primary" id="draw-btn">
+        <span class="btn-bg-glow"></span>
+        <span class="btn-icon">✦</span>
+        <span>DRAW YOUR CARD</span>
+        <span class="btn-corner btn-corner-tl"></span>
+        <span class="btn-corner btn-corner-tr"></span>
+        <span class="btn-corner btn-corner-bl"></span>
+        <span class="btn-corner btn-corner-br"></span>
+      </button>
+      <button class="btn-secondary" id="spread-btn">
+        <span>FULL SPREAD</span>
+      </button>
+    </div>
+
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-val">22</span>
+        <span class="meta-label">Major Arcana</span>
+      </div>
+      <div class="meta-divider">⬡</div>
+      <div class="meta-item">
+        <span class="meta-val">∞</span>
+        <span class="meta-label">Readings</span>
+      </div>
+      <div class="meta-divider">⬡</div>
+      <div class="meta-item">
+        <span class="meta-val">01</span>
+        <span class="meta-label">Destiny</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cards-showcase">
+    <div class="showcase-card showcase-card-left" data-card="The High Priestess">
+      <img src="cards/The High Priestess.webp" alt="The High Priestess">
+      <div class="card-glow card-glow-blue"></div>
+    </div>
+    <div class="showcase-card showcase-card-center" data-card="The Fool" id="hero-center-card">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-back-pattern">
+            <div class="back-symbol">⬡</div>
+            <div class="back-grid"></div>
+            <div class="back-corners">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-front">
+          <img src="cards/The Fool.webp" alt="The Fool">
+        </div>
+      </div>
+      <div class="card-glow card-glow-purple"></div>
+    </div>
+    <div class="showcase-card showcase-card-right" data-card="The Emperor">
+      <img src="cards/The Emperor.webp" alt="The Emperor">
+      <div class="card-glow card-glow-red"></div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="scroll-line"></span>
+    <span class="scroll-text">SCROLL TO EXPLORE</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<section class="section-divider">
+  <div class="divider-line"></div>
+  <div class="divider-symbol">
+    <span>✦</span><span>THE 22 ARCANA</span><span>✦</span>
+  </div>
+  <div class="divider-line"></div>
+</section>
+
+<section class="arcana-grid-section" id="arcana">
+  <div class="section-header">
+    <div class="section-tag">// MAJOR ARCANA CODEX</div>
+    <h2 class="section-title">CHOOSE YOUR <span class="accent-text">READING</span></h2>
+    <p class="section-desc">Each arcana carries a signal from the net. Touch a card to receive its transmission.</p>
+  </div>
+
+  <div class="arcana-filter">
+    <button class="filter-btn active" data-filter="all">ALL</button>
+    <button class="filter-btn" data-filter="light">LIGHT PATH</button>
+    <button class="filter-btn" data-filter="shadow">SHADOW PATH</button>
+    <button class="filter-btn" data-filter="power">POWER</button>
+  </div>
+
+  <div class="arcana-grid" id="arcana-grid">
+  </div>
+</section>
+
+<section class="reading-section" id="reading-section" style="display:none;">
+  <div class="reading-ambient"></div>
+  <div class="reading-container">
+    <div class="reading-close" id="reading-close">✕ CLOSE</div>
+
+    <div class="reading-layout">
+      <div class="reading-card-display">
+        <div class="reading-card-wrap" id="reading-card-wrap">
+          <div class="reading-card-frame">
+            <img id="reading-card-img" src="" alt="">
+            <div class="reading-card-glow" id="reading-card-glow"></div>
+          </div>
+        </div>
+        <div class="reading-card-number" id="reading-card-number">IV</div>
+      </div>
+
+      <div class="reading-content">
+        <div class="reading-tag" id="reading-tag">MAJOR ARCANA</div>
+        <h2 class="reading-title" id="reading-title">THE EMPEROR</h2>
+        <div class="reading-subtitle" id="reading-archetype"></div>
+
+        <div class="reading-oracle">
+          <div class="oracle-header">
+            <span class="oracle-dot"></span>
+            <span>ORACLE TRANSMISSION</span>
+          </div>
+          <p class="oracle-text" id="oracle-text"></p>
+        </div>
+
+        <div class="reading-aspects">
+          <div class="aspect-grid">
+            <div class="aspect-item" id="aspect-light">
+              <div class="aspect-label">UPRIGHT</div>
+              <div class="aspect-value" id="aspect-light-val"></div>
+            </div>
+            <div class="aspect-item aspect-shadow" id="aspect-dark">
+              <div class="aspect-label">REVERSED</div>
+              <div class="aspect-value" id="aspect-dark-val"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reading-keywords" id="reading-keywords"></div>
+
+        <div class="reading-actions">
+          <button class="btn-primary btn-sm" id="draw-again">
+            <span class="btn-bg-glow"></span>
+            <span>✦ DRAW AGAIN</span>
+          </button>
+          <button class="btn-secondary btn-sm" id="view-spread">
+            <span>VIEW IN SPREAD</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spread-section" id="spread-section" style="display:none;">
+  <div class="spread-close" id="spread-close">✕ RETURN</div>
+  <div class="spread-title-area">
+    <div class="section-tag">// THREE-CARD SPREAD</div>
+    <h2 class="section-title">YOUR <span class="accent-text">FATE MATRIX</span></h2>
+  </div>
+  <div class="spread-layout">
+    <div class="spread-position" data-pos="past">
+      <div class="spread-card-slot" id="spread-past">
+        <div class="slot-glow"></div>
+        <div class="slot-icon">?</div>
+      </div>
+      <div class="spread-label">PAST<br><span>what shaped you</span></div>
+    </div>
+    <div class="spread-position spread-position-center" data-pos="present">
+      <div class="spread-card-slot" id="spread-present">
+        <div class="slot-glow"></div>
+        <div class="slot-icon">?</div>
+      </div>
+      <div class="spread-label">PRESENT<br><span>what defines you</span></div>
+    </div>
+    <div class="spread-position" data-pos="future">
+      <div class="spread-card-slot" id="spread-future">
+        <div class="slot-glow"></div>
+        <div class="slot-icon">?</div>
+      </div>
+      <div class="spread-label">FUTURE<br><span>what awaits you</span></div>
+    </div>
+  </div>
+  <button class="btn-primary spread-draw-btn" id="spread-draw-btn">
+    <span class="btn-bg-glow"></span>
+    <span>✦ REVEAL THE SPREAD</span>
+  </button>
+  <div class="spread-reading" id="spread-reading" style="display:none;"></div>
+</section>
+
+<section class="lore-section">
+  <div class="lore-content">
+    <div class="lore-text-side">
+      <div class="section-tag">// MISTY'S PARLOUR</div>
+      <h2 class="lore-title">THE READER<br><span class="accent-text">BETWEEN WORLDS</span></h2>
+      <p class="lore-body">
+        In Night City, Misty Olszewski ran the esoteric shop next to Viktor's ripperdoc. 
+        She read tarot for V before every major push: cards as neural augmentation, 
+        fate as data, the universe as a system to be decoded.
+      </p>
+      <p class="lore-body lore-body-jp">未来は静寂の中にある: <em>The future lives in silence.</em></p>
+      <div class="lore-divider">
+        <span></span><span>⬡</span><span></span>
+      </div>
+      <p class="lore-body">
+        This oracle carries that tradition into the net. Every card is a mirror. 
+        Every reading is a transmission. The arcana knows what you need to hear.
+      </p>
+    </div>
+    <div class="lore-visual-side">
+      <div class="lore-card-stack">
+        <div class="lore-card lore-card-3">
+          <img src="cards/The Empress.webp" alt="">
+        </div>
+        <div class="lore-card lore-card-2">
+          <img src="cards/The High Priestess.webp" alt="">
+        </div>
+        <div class="lore-card lore-card-1">
+          <img src="cards/The Emperor.webp" alt="">
+        </div>
+      </div>
+      <div class="lore-card-glow"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <span class="nav-logo-symbol">⬡</span>
+      <span>ARCANA | NIGHT CITY</span>
+    </div>
+    <div class="footer-jp">運命システム v2.0.77</div>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-bottom">
+    <span>© 2077 ARCANA CORP</span>
+    <span>ALL FATES RESERVED</span>
+    <span>知恵は内側にある</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay" style="display:none;"></div>
+
+<script src="game.js"></script>
+</body>
+</html>

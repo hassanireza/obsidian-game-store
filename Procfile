@@ -1,0 +1,1 @@
+web: python manage.py migrate --noinput && python manage.py seed && python manage.py ensure_admin && python manage.py collectstatic --noinput && gunicorn obsidian.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --threads 2 --timeout 60 --log-file -

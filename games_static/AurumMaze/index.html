@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Aurum Maze</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="stage">
+      <div class="topbar">
+        <div class="brand">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="25"></circle>
+            <path d="M32 32 L57 20"></path>
+            <path d="M32 32 L57 44"></path>
+          </svg>
+          <div>
+            <p>Aurum Maze</p>
+            <span>Ten luminous rounds</span>
+          </div>
+        </div>
+        <div class="metrics" aria-label="Game stats">
+          <div><span>Score</span><strong id="score">0</strong></div>
+          <div><span>Level</span><strong id="level">1</strong></div>
+          <div><span>Lives</span><strong id="lives">3</strong></div>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game" width="840" height="840" aria-label="Aurum Maze game board"></canvas>
+        <div class="scanline"></div>
+        <div class="overlay" id="overlay">
+          <div class="monogram">AM</div>
+          <h1 id="overlayTitle">Enter the gold line</h1>
+          <p id="overlayText">A stripped back arcade chase in ten precise acts. Clear every spark, master every turn, and make the maze sing.</p>
+          <button id="primaryAction" type="button">Start run</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="pauseBtn" aria-label="Pause or resume">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"></path></svg>
+          <span>Pause</span>
+        </button>
+        <button type="button" id="restartBtn" aria-label="Restart game">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12a7 7 0 1 1-2.05-4.95"></path><path d="M19 12l-4-4M19 12l-4 4"></path></svg>
+          <span>Restart</span>
+        </button>
+        <div class="touchpad" aria-label="Touch movement controls">
+          <button type="button" data-dir="left" aria-label="Move left"><svg viewBox="0 0 24 24"><path d="M5 12l7-7M5 12l7 7M5 12h14"></path></svg></button>
+          <button type="button" data-dir="up" aria-label="Move up"><svg viewBox="0 0 24 24"><path d="M12 5l7 7M12 5l-7 7M12 5v14"></path></svg></button>
+          <button type="button" data-dir="down" aria-label="Move down"><svg viewBox="0 0 24 24"><path d="M12 19l7-7M12 19l-7-7M12 19V5"></path></svg></button>
+          <button type="button" data-dir="right" aria-label="Move right"><svg viewBox="0 0 24 24"><path d="M19 12l-7-7M19 12l-7 7M19 12H5"></path></svg></button>
+        </div>
+        <div class="hint">Swipe, tap the pad, or use arrow keys.</div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-head">
+        <p>Run profile</p>
+        <strong id="status">Ready</strong>
+      </div>
+      <div class="level-list" id="levelList"></div>
+    </aside>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>

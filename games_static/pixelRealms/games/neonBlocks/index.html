@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON BLOCKS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="noise"></div>
+
+    <main class="game-shell">
+        <section class="left-panel">
+            <div class="brand">
+                <span class="mini-label">INDIE ARCADE SYSTEM</span>
+
+                <h1>NEON BLOCKS</h1>
+
+                <p>
+                    A reimagined retro puzzle experience inspired by vintage handheld consoles,
+                    redesigned with modern indie aesthetics, glowing pixel visuals,
+                    and nostalgic synthwave energy.
+                </p>
+            </div>
+
+            <div class="game-frame">
+                <div class="screen-glow"></div>
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+            </div>
+        </section>
+
+        <aside class="right-panel">
+            <div class="panel-card score-card">
+                <span class="panel-title">SCORE</span>
+                <h2 id="score">0</h2>
+            </div>
+
+            <div class="panel-card controls-card">
+                <span class="panel-title">CONTROLS</span>
+
+                <div class="control-row">
+                    <span>← →</span>
+                    <p>Move</p>
+                </div>
+
+                <div class="control-row">
+                    <span>↑</span>
+                    <p>Rotate</p>
+                </div>
+
+                <div class="control-row">
+                    <span>↓</span>
+                    <p>Drop</p>
+                </div>
+            </div>
+
+            <button id="restartButton">RESTART GAME</button>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

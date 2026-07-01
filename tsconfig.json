@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "outDir": "./static/js",
+    "rootDir": "./static/ts",
+    "strict": false,
+    "skipLibCheck": true,
+    "lib": ["ES2017", "DOM"],
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["static/ts/**/*.ts"]
+}

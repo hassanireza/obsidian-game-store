@@ -1,0 +1,66 @@
+<svg width="1400" height="520" viewBox="0 0 1400 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Aurum Maze banner</title>
+  <desc id="desc">A minimal black, white, and gold line-art banner inspired by the Aurum Maze game board.</desc>
+  <rect width="1400" height="520" fill="#050505"/>
+  <g opacity=".18" stroke="#F7F3E8" stroke-width="1">
+    <path d="M0 64H1400M0 128H1400M0 192H1400M0 256H1400M0 320H1400M0 384H1400M0 448H1400"/>
+    <path d="M80 0V520M160 0V520M240 0V520M320 0V520M400 0V520M480 0V520M560 0V520M640 0V520M720 0V520M800 0V520M880 0V520M960 0V520M1040 0V520M1120 0V520M1200 0V520M1280 0V520"/>
+  </g>
+  <rect x="54" y="54" width="1292" height="412" stroke="#F7F3E8" stroke-opacity=".28"/>
+  <rect x="86" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="166" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="246" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="406" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="486" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="646" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="806" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="886" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1046" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1126" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1206" y="86" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="86" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="326" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="566" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="726" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="966" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1286" y="166" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="86" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="246" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="406" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="566" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="806" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="966" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1126" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1286" y="246" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="86" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="166" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="326" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="486" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="646" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="806" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1046" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <rect x="1206" y="326" width="80" height="80" stroke="#F7F3E8" stroke-opacity=".74" stroke-width="3"/>
+  <g fill="#F7F3E8" opacity=".76">
+    <circle cx="206" cy="206" r="5"/><circle cx="286" cy="206" r="5"/><circle cx="446" cy="206" r="5"/><circle cx="526" cy="206" r="5"/><circle cx="686" cy="206" r="5"/><circle cx="846" cy="206" r="5"/><circle cx="926" cy="206" r="5"/><circle cx="1086" cy="206" r="5"/><circle cx="1246" cy="206" r="5"/>
+    <circle cx="206" cy="286" r="5"/><circle cx="366" cy="286" r="5"/><circle cx="526" cy="286" r="5"/><circle cx="686" cy="286" r="5"/><circle cx="766" cy="286" r="5"/><circle cx="926" cy="286" r="5"/><circle cx="1086" cy="286" r="5"/><circle cx="1246" cy="286" r="5"/>
+  </g>
+  <g transform="translate(674 260)">
+    <path d="M0 0L68 -34A76 76 0 1 0 68 34L0 0Z" fill="#D4AF37"/>
+    <circle cx="18" cy="-30" r="7" fill="#050505"/>
+    <circle r="94" stroke="#D4AF37" stroke-opacity=".55" stroke-width="3"/>
+  </g>
+  <g stroke="#F7F3E8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M398 382a34 34 0 0 1 68 0v34l-17 -12 -17 12 -17 -12 -17 12v-34Z"/>
+    <circle cx="421" cy="381" r="4" fill="#F7F3E8"/><circle cx="443" cy="381" r="4" fill="#F7F3E8"/>
+    <path d="M1030 142a34 34 0 0 1 68 0v34l-17 -12 -17 12 -17 -12 -17 12v-34Z"/>
+    <circle cx="1053" cy="141" r="4" fill="#F7F3E8"/><circle cx="1075" cy="141" r="4" fill="#F7F3E8"/>
+  </g>
+  <g>
+    <rect x="94" y="78" width="320" height="2" fill="#D4AF37"/>
+    <rect x="986" y="438" width="320" height="2" fill="#D4AF37"/>
+    <circle cx="126" cy="126" r="10" fill="#D4AF37"/>
+    <circle cx="1274" cy="394" r="10" fill="#D4AF37"/>
+  </g>
+  <text x="80" y="454" fill="#D4AF37" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="0">AURUM MAZE</text>
+  <text x="80" y="486" fill="#F7F3E8" fill-opacity=".78" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="500" letter-spacing="0">A ten level arcade remake in black lines, white glow, and pure gold</text>
+</svg>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Cosmodrome — an endless drift through the dark</title>
+<meta name="description" content="Cosmodrome is a nostalgic Enduro style endless space racer. Steer your starfighter through asteroid fields, blast raiders, hop stones, face down sector bosses, and survive the drift.">
+<meta name="theme-color" content="#050608">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+  <canvas id="bgstars" aria-hidden="true"></canvas>
+
+  <main class="cabinet" role="application" aria-label="Cosmodrome, a space racing game">
+
+    <header class="cabinet-top">
+      <h1 class="title">COSMODROME</h1>
+      <div class="top-actions">
+        <button id="weaponBtnDesktop" class="chip-btn weapon-chip" type="button" title="Cycle weapon (Q)">
+          <span class="weapon-chip-label">gun:</span> <span id="weaponNameDesktop">pulse laser</span>
+        </button>
+        <button id="muteBtn" class="chip-btn" aria-pressed="false" type="button">SOUND ON</button>
+      </div>
+    </header>
+
+    <div class="viewport">
+      <canvas id="game" width="480" height="720" aria-label="Game viewport, use arrow keys or on screen buttons to steer and fire"></canvas>
+
+      <div class="hud hud-left" id="livesHud" aria-label="Hull integrity remaining"></div>
+
+      <div class="hud hud-right">
+        <div class="hud-block">
+          <span class="hud-label">score</span>
+          <span class="hud-value" id="scoreValue">0</span>
+        </div>
+        <div class="hud-block">
+          <span class="hud-label">best</span>
+          <span class="hud-value" id="bestValue">0</span>
+        </div>
+      </div>
+
+      <div class="hud hud-sector" id="sectorHud">
+        <span class="hud-label" id="sectorLabel">sector 1</span>
+        <div class="sector-bar"><div class="sector-fill" id="sectorFill"></div></div>
+      </div>
+
+      <div class="hud hud-boss hidden" id="bossHud">
+        <span class="hud-label" id="bossName">raider boss</span>
+        <div class="boss-bar"><div class="boss-fill" id="bossHpFill"></div></div>
+      </div>
+
+      <div class="combo hidden" id="comboTag">x1</div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+      <div class="weapon-dock" id="weaponDock">
+        <label class="hud-label" for="weaponSelect" style="position:absolute; left:-9999px;">weapon</label>
+        <select class="weapon-select" id="weaponSelect" aria-label="Select weapon">
+          <option value="laser">pulse laser</option>
+          <option value="twin">twin cannon</option>
+          <option value="spread">spread blaster</option>
+          <option value="missile">homing missile</option>
+        </select>
+        <div class="weapon-heat" aria-hidden="true"><div class="weapon-heat-fill" id="weaponHeatFill"></div></div>
+      </div>
+
+      <section class="overlay" id="screen-start">
+        <div class="paper-card">
+          <p class="eyebrow">rebel pilot training sim</p>
+          <h2 class="card-title">COSMODROME</h2>
+          <p class="tagline">an endless drift through the dark</p>
+
+          <div class="leaderboard" id="leaderboardStart">
+            <p class="hud-label">top pilots</p>
+            <ol class="score-list" id="scoreListStart"></ol>
+          </div>
+
+          <button class="btn-primary" id="startBtn" type="button">launch</button>
+
+          <p class="howto">
+            <span>&larr;/&rarr; A/D steer</span>
+            <span>&uarr; thrust</span>
+            <span>&darr; brake</span>
+            <span>space hops</span>
+            <span>Q swaps gun</span>
+            <span>P pauses</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="overlay hidden" id="screen-bossintro">
+        <div class="paper-card boss-card">
+          <p class="eyebrow">warning — capital signature detected</p>
+          <h2 class="card-title" id="bossIntroName">sector boss</h2>
+          <p class="tagline" id="bossIntroTagline">brace for contact</p>
+        </div>
+      </section>
+
+      <section class="overlay hidden" id="screen-pause">
+        <div class="paper-card small">
+          <h2 class="card-title">paused</h2>
+          <p class="tagline">the void will wait</p>
+          <button class="btn-primary" id="resumeBtn" type="button">resume</button>
+        </div>
+      </section>
+
+      <section class="overlay hidden" id="screen-gameover">
+        <div class="paper-card">
+          <h2 class="card-title">hull lost</h2>
+          <p class="finalscore"><span id="finalScore">0</span> <span class="hud-label">points</span></p>
+          <p class="newbest hidden" id="newBestTag">new best score</p>
+
+          <div class="leaderboard" id="leaderboardEnd">
+            <p class="hud-label">top pilots</p>
+            <ol class="score-list" id="scoreListEnd"></ol>
+          </div>
+
+          <button class="btn-primary" id="retryBtn" type="button">relaunch</button>
+        </div>
+      </section>
+    </div>
+
+    <footer class="cabinet-bottom">
+      <p class="instructions">Dodge asteroids, blast raiders, hop stones, and take down the boss every 5th sector.</p>
+      <div class="touch-controls" id="touchControls">
+        <button class="touch-btn" id="touchLeft" aria-label="Steer left" type="button">&#9664;</button>
+        <button class="touch-btn weapon" id="touchWeapon" aria-label="Switch weapon" type="button">&#9881;</button>
+        <button class="touch-btn boost" id="touchFire" aria-label="Hop stones" type="button">&#9650;</button>
+        <button class="touch-btn" id="touchRight" aria-label="Steer right" type="button">&#9654;</button>
+      </div>
+    </footer>
+
+  </main>
+
+  <p class="credit">built with plain javascript, no engine, no dependencies</p>
+</div>
+
+<script src="physics.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

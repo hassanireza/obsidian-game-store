@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Pixel Realms</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logoIcon.png">
+
+</head>
+
+<body>
+
+  <div class="noise"></div>
+  <div class="gradient-bg"></div>
+
+  <header class="hero">
+
+    <nav class="nav">
+      <div class="logo">
+        <img src="./logoIcon.png" alt="Pixel Realms" class="logo-icon" />
+        Pixel Realms Studio
+      </div>
+
+      <div class="nav-links">
+        <a href="#games">Game Library</a>
+        <a href="#about">About</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <span class="tag">
+          THE FUTURE OF BROWSER GAMING
+        </span>
+
+        <h1>
+          No Downloads.<br>
+          Pure Play.
+        </h1>
+
+        <p>
+          Pixel Realms delivers handcrafted, high-performance browser games
+          built for players who demand more — stunning visuals, fluid controls,
+          and zero friction between you and the action. Launch any game in
+          seconds, on any device, anywhere in the world.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#games" class="primary-btn">
+            Start Playing Free
+          </a>
+
+          <button class="glass-btn" id="randomBtn">
+            Surprise Me
+          </button>
+        </div>
+      </div>
+
+      <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="games">
+
+    <section class="section-title">
+      <span>GAME LIBRARY</span>
+      <h2>Pick Your Next Obsession</h2>
+    </section>
+
+    <section class="carousel-wrapper">
+
+      <button class="nav-arrow left" id="prev">
+
+  <svg
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+
+</button>
+
+
+      <div class="carousel-track" id="carousel">
+
+            <article class="game-card active">
+
+            <div class="card-glow green"></div>
+
+            <div class="game-cover neon-blocks-cover">
+
+                <div class="reactor-bg"></div>
+
+                <div class="reactor-glow reactor-glow-1"></div>
+                <div class="reactor-glow reactor-glow-2"></div>
+                <div class="reactor-glow reactor-glow-3"><div class="reactor-bloom"></div></div>
+
+                <div class="energy-ring"></div>
+
+                <div class="reactor-core">
+
+                    <div class="tetromino l-piece">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <div class="tetromino z-piece">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <div class="tetromino o-piece">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+
+                    </div>
+
+                <div class="particles">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                </div>
+
+            </div>
+
+            <div class="game-info">
+
+                <span class="game-category">
+                ARCADE EXPERIENCE
+                </span>
+
+                <h3>Neon Blocks</h3>
+
+                <p>
+                Stack, survive, and dominate. A razor-sharp reimagining of the
+                all-time classic — turbocharged with neon visuals, tight controls,
+                and an addictive scoring system that keeps you coming back for more.
+                </p>
+
+                <a
+                href="./games/neonBlocks/index.html"
+                class="play-btn"
+                >
+                Play Game
+                </a>
+
+            </div>
+
+            </article>
+
+        <article class="game-card">
+
+          <div class="card-glow purple"></div>
+
+          <div class="game-cover ttt-cover">
+            <div class="grid-lines">
+                <span class="v1"></span>
+                <span class="v2"></span>
+                <span class="h1"></span>
+                <span class="h2"></span>
+            </div>
+
+            <div class="x-shape"></div>
+            <div class="o-shape"></div>
+          </div>
+
+          <div class="game-info">
+
+            <span class="game-category">
+              STRATEGIC CHALLENGE
+            </span>
+
+            <h3>Tic Tac Toe</h3>
+
+            <p>
+              Outthink. Outmanoeuvre. Outsmart. Go head-to-head against a
+              relentless AI opponent in a beautifully refined strategy duel
+              that rewards every calculated move you make.
+            </p>
+
+            <a
+              href="./games/ticTacToe/index.html"
+              class="play-btn"
+            >
+              Play Game
+            </a>
+
+          </div>
+        </article>
+
+        <article class="game-card">
+
+          <div class="card-glow blue"></div>
+
+          <div class="game-cover life-cover">
+
+            <div class="life-grid">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+
+          </div>
+
+          <div class="game-info">
+
+            <span class="game-category">
+              INTERACTIVE SIMULATION
+            </span>
+
+            <h3>Neural Grid</h3>
+
+            <p>
+              Set life in motion and watch it evolve. Place cells, trigger chain
+              reactions, and discover emergent patterns in a hypnotic living
+              simulation that's impossible to put down.
+            </p>
+
+            <a
+              href="./games/neuralGrid/index.html"
+              class="play-btn"
+            >
+              Play Game
+            </a>
+
+          </div>
+        </article>
+
+      </div>
+
+      <button class="nav-arrow right" id="next">
+
+  <svg
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+
+</button>
+
+    </section>
+
+    <section class="bottom-panel" id="about">
+
+      <div class="panel-card">
+        <span>OUR MISSION</span>
+
+        <h3>
+          Great games shouldn't require an install.
+        </h3>
+
+        <p>
+          We believe the best play experiences are the ones with no barriers.
+          Every title in the Pixel Realms library is crafted from the ground up
+          to be instantly accessible — no accounts, no downloads, no waiting.
+          Just open a tab and play.
+        </p>
+      </div>
+
+      <div class="panel-card">
+        <span>BUILT DIFFERENT</span>
+
+        <h3>Performance-first engineering, pixel-perfect design.</h3>
+
+        <p>
+          Every game is built on high-performance vanilla JavaScript with
+          hardware-accelerated rendering and adaptive layouts — delivering
+          console-quality responsiveness whether you're on a widescreen desktop
+          or a smartphone in your pocket.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+
+    <div>
+      © 2026 Pixel Realms. All Rights Reserved.
+    </div>
+
+    <div>
+        Crafted by <a class="footer-link" href="https://hassanireza.github.io/hassanireza/portfolio/Laser-frame/index.html"><strong>Laser Frame</strong></a>
+    </div>
+
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
