@@ -1,0 +1,45 @@
+<svg width="1200" height="220" viewBox="0 0 1200 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#161B22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#44B78B"/>
+      <stop offset="1" stop-color="#44B78B" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#8B949E" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="220" fill="url(#bg)"/>
+  <rect width="1200" height="220" fill="url(#grid)"/>
+
+  <rect x="0" y="0" width="6" height="220" fill="#44B78B"/>
+
+  <g transform="translate(64,58)">
+    <rect x="0" y="0" width="34" height="34" rx="8" fill="none" stroke="#44B78B" stroke-width="2"/>
+    <path d="M9 17 L15 23 L26 10" fill="none" stroke="#44B78B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="118" y="86" font-family="Georgia, 'Times New Roman', serif" font-size="42" fill="#E6EDF3" font-weight="600">
+    Obsidian Game Store
+  </text>
+
+  <text x="64" y="132" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" letter-spacing="2" fill="#8B949E">
+    A CURATED, STATIC, ZERO BACKEND GAME CATALOG
+  </text>
+
+  <rect x="64" y="152" width="1072" height="1" fill="url(#accent)"/>
+
+  <g font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#8B949E" letter-spacing="1">
+    <text x="64" y="184">REACT 19</text>
+    <text x="164" y="184">TYPESCRIPT</text>
+    <text x="278" y="184">VITE</text>
+    <text x="340" y="184">GITHUB PAGES</text>
+  </g>
+
+  <circle cx="1136" cy="178" r="4" fill="#44B78B"/>
+  <text x="1150" y="182" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#44B78B">LIVE</text>
+</svg>
