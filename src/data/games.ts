@@ -7,6 +7,25 @@ const repo = (name: string) => `https://github.com/${GH_USER}/${name}`;
 
 export const GAMES: Game[] = [
   {
+    slug: "obelisk-drift",
+    name: "Obelisk Drift",
+    tagline: "Every stone remembers its fall.",
+    description:
+      "A gravity physics ritual across a submerged ruin. Draw the fragment back, release it into the dark, and let each chamber's wells and currents carry it to the socket that calls it home. Ten chambers, real momentum, no two wells pull the same way twice.",
+    genre: "arcade",
+    developer: "Obsidian Originals",
+    plays: 0,
+    rating: 5,
+    reviewCount: 0,
+    colorFrom: "#0c0e12",
+    colorTo: "#8b8f94",
+    thumbnail: `${import.meta.env.BASE_URL}covers/obelisk-drift.webp`,
+    releaseDate: "2026-07-09",
+    repoUrl: repo("obeliskDrift"),
+    playUrl: pages("obeliskDrift"),
+    isEditorsChoice: true,
+  },
+  {
     slug: "arcana-night-city-tarot",
     name: "ARCANA: Night City Tarot",
     tagline: "Read the cards of Night City",
