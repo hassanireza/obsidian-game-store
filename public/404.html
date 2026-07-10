@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Obsidian Game Store</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      //
+      // GitHub Pages has no server-side router, so a direct visit to a deep
+      // link like /games/obelisk-drift returns this 404 page instead of the
+      // app. This script rewrites the request into a query string and sends
+      // the browser back to index.html, which restores the real path before
+      // React Router ever sees it. See index.html for the matching half.
+      //
+      // pathSegmentsToKeep is 1 because this is a project page served at
+      // <username>.github.io/<repo>/, so the first path segment (the repo
+      // name) must be preserved.
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

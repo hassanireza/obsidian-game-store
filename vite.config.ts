@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 // Override at build time with VITE_BASE_PATH if the repo is renamed.
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VITE_BASE_PATH ?? "/obsidianGameStore/",
+  base: process.env.VITE_BASE_PATH ?? "/obsidian/",
 });
